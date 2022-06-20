@@ -20,6 +20,9 @@ pipeline {
               sh 'ansible-playbook -i inventory/test.hcloud.yml install-hero-app.yml'
             }
         }
+        stage('Run Testinfra Tests') {
+            sh "py.test --connection=ansible --ansible-inventory inventory/test.hcloud.yml --hosts='ansible://ansible-test-instance' --force-ansible -v *.py"
+        }
     }
     post {
         always {
