@@ -21,7 +21,9 @@ pipeline {
             }
         }
         stage('Run Testinfra Tests') {
-            sh "py.test --connection=ansible --ansible-inventory inventory/test.hcloud.yml --hosts='ansible://ansible-test-instance' --force-ansible -v *.py"
+            steps {
+                sh "py.test --connection=ansible --ansible-inventory inventory/test.hcloud.yml --hosts='ansible://ansible-test-instance' --force-ansible -v *.py"
+            }
         }
     }
     post {
