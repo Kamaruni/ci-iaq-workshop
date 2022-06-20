@@ -6,6 +6,11 @@ pipeline {
     }
 
     stages {
+        stage('Lint Ansible Playbook') {
+            steps {
+                sh 'ansible-lint *.yml'
+            }
+        }
         stage('Start Test VM') {
             steps {
               dir('ci-test-vm') {
